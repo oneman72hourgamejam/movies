@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Фiльми</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <h1>Фiльмы <small class="text-muted">
+        <button type="button" style="border:none;" class="btn btn-primary text-muted bg-transparent" data-toggle="modal" data-target="#exampleModal1">
+                ver:2.0
+        </button>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel"><b>Історія змін:</b></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>
+                            <dt>Version 2.0</dt>
+                        </h5>
+                        <h6>
+                            <dd>
+                                <ul>
+									<li>Виправлено сортування по всіх колонках.</li>
+									<li>Додано индекс та середний рейтинг фільму.</li>
+                                </ul>
+                            </dd>
+                        </h6>
+                    	<h5>
+                            <dt>Version 1.5</dt>
+                        </h5>
+                        <h6>
+                            <dd>
+                                <ul>
+									<li>Доданий день перегляду фільму.</li>
+									<li>Додано загальний рейтинг фільму.</li>
+                                    <li>Прибрана кнопка видалити в "Переглянуті фільми".</li>
+                                    <li>Виправлена кнопка видалити в "Подивитися наступного разу".</li>
+                                </ul>
+                            </dd>
+                        </h6>
+                        <h5>
+                            <dt>Version 1.4</dt>
+                        </h5>
+                        <h6>
+                            <dd>
+                                <ul>
+                                    <li>Сортування оцінок відображається коректно. </li>
+                                    <li>Додана перевірка перед видаленням фільму.</li>
+                                </ul>
+                            </dd>
+                        </h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </small></h1>
+
+    <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="pill" href="#home">Переглянуті фільми</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#menu1">Подивитися наступного разу</a>
+        </li>
+        </ul>
+        <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+            <div class="content">
+                <div class="form">
+                    <form action="/" method="POST">
+                        <div class="row">
+                            <div class="col" align="center">
+                            	<b>Фiльм</b>
+                                <input type="text" class="form-control" name="content" id="content" placeholder="Назва фiльму">
+                            </div>
+                            <div class="col" align="center">
+                            	<b>Оцiнка Дiми</b>
+                                <input type="number" class="form-control" name="dima_rate" id="dima_rate" value="0" placeholder="Оцiнка Дiми">
+                            </div>
+                            <div class="col" align="center">
+                            	<b>Оцiнка Дениса</b>
+                                <input type="number" class="form-control" name="deni_rate" id="deni_rate" value="0" placeholder="Оцiнка Дениса">
+                            </div>
+                            <div class="col" align="center">
+                            	<b>Оцiнка Юри</b>
+                                <input type="number" class="form-control" name="yura_rate" id="yura_rate" value="0" placeholder="Оцiнка Юри">
+                            </div>
+                            <div class="col" align="center">
+                            	<b>Оцiнка Ігоря</b>
+                                <input type="number" class="form-control" name="ihor_rate" id="ihor_rate" value="0" placeholder="Оцiнка Ігоря">
+                            </div>
+                            <div class="col" align="center">
+                            	<b>Додано</b>
+                                <input type="date" class="form-control" name="date_created" id="date_created" placeholder="date_created">
+                            </div>
+                            <div class="col" align="center">
+                            	<b>.</b>
+                                <input type="submit" class="form-control" value="Додати" style="background-color:cornflowerblue; color:white;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-bordered" id="myTable1">
+                    <tr>
+                        <th onclick="sortQuickTable(0)">#</th>                                                
+                        <th onclick="sortQuickTable(1)">Фiльм</th>
+                        <th onclick="sortQuickTable(2)">Оцiнка Дiми</th>
+                        <th onclick="sortQuickTable(3)">Оцiнка Дениса</th>
+                        <th onclick="sortQuickTable(4)">Оцiнка Юри</th>
+                        <th onclick="sortQuickTable(5)">Оцiнка Ігоря</th>
+                        <th onclick="sortQuickTable(6)">Середня оцінка</th>
+                        <th onclick="sortQuickTable(7)">Загальна оцінка</th>
+                        <th onclick="sortQuickTable(8)">Доданий</th>
+                        <!--<th onclick="sortTable(5)">Опции</th>-->
+                        <th>Опції</th>
+                    </tr>
+                    {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie.id }}</td>
+                        <td>{{ movie.content }}</td>
+                        <td>{{ movie.dima_rate }}</td>
+                        <td>{{ movie.deni_rate }}</td>
+                        <td>{{ movie.yura_rate }}</td>
+                        <td>{{ movie.ihor_rate }}</td>
+                        <td>{{ (movie.dima_rate + movie.deni_rate + movie.yura_rate + movie.ihor_rate) / 4 }}</td>
+                        <td>{{ movie.dima_rate + movie.deni_rate + movie.yura_rate + movie.ihor_rate }}</td>
+                        <td>{{ movie.date_created }}</td>
+                        <td>
+                            <a href="/update/{{movie.id}}" class="btn btn-secondary active btn-sm" role="button" aria-pressed="true">Редагувати</a>                           
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div id="menu1" class="container tab-pane fade"><br>
+            <center>
+                <a href="/add" class="btn btn-success active" role="button" aria-pressed="true">Додати фільм для перегляду</a>
+                <a href="/random" class="btn btn-info active" role="button" aria-pressed="true">Вибрати випадковий фільм</a>
+            </center>
+
+            <br>
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-bordered" id="myTable2">
+                <tr>
+                    <th onclick="sortWordTable(0)">Фiльм</th>
+                    <th>Опції</th>
+                </tr>
+                {% for movie in moviesToWatch %}
+                <tr>
+                    <td>{{ movie.next_movie }}</td>
+                    <td>
+                        <a href="/deleteMovie/{{movie.id}}" class="btn btn-danger active btn-sm" role="button" aria-pressed="true">Видалити</a>                          
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
