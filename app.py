@@ -8,7 +8,8 @@ app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://neondb_owner:npg_ClbJig3do5Vj@ep-frosty-surf-ab59znp9-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://movies_3864:s0mpjrHH3rTH4lDFbFsvYqS9GeH8rSC1ejAubGwCN1z2uw0VIwjvDTGdLNB5dUUY@movies-3864.postgresql.c.osc-fr1.scalingo-dbs.com:33443/movies_3864?sslmode=prefer'
+# postgresql://movies_zakk_user:1hhIaZZROMPNHABeukLe5nFS1FhIq8kc@dpg-d2o22b3uibrs73fbouu0-a.frankfurt-postgres.render.com/movies_zakk
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
