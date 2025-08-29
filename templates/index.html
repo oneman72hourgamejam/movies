@@ -111,7 +111,8 @@
                 </div>
                 <br>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-bordered" id="myTable1">
-                    <tr>                                             
+                    <tr>
+                        <th onclick="sortQuickTable(0)">#</th>                                                
                         <th onclick="sortQuickTable(1)">Фiльм</th>
                         <th onclick="sortQuickTable(2)">Оцiнка Дiми</th>
                         <th onclick="sortQuickTable(3)">Оцiнка Дениса</th>
@@ -125,6 +126,7 @@
                     </tr>
                     {% for movie in movies %}
                     <tr>
+                        <td>{{ movie.id }}</td>
                         <td>{{ movie.content }}</td>
                         <td>{{ movie.dima_rate }}</td>
                         <td>{{ movie.deni_rate }}</td>
