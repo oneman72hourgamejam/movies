@@ -6,9 +6,9 @@ import random
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://movies_3864:s0mpjrHH3rTH4lDFbFsvYqS9GeH8rSC1ejAubGwCN1z2uw0VIwjvDTGdLNB5dUUY@movies-3864.postgresql.c.osc-fr1.scalingo-dbs.com:33443/movies_3864?sslmode=prefer'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://movies_3864:s0mpjrHH3rTH4lDFbFsvYqS9GeH8rSC1ejAubGwCN1z2uw0VIwjvDTGdLNB5dUUY@movies-3864.postgresql.c.osc-fr1.scalingo-dbs.com:33443/movies_3864?sslmode=prefer'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
