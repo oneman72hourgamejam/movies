@@ -110,27 +110,27 @@
                     </form>
                 </div>
                 <br>
-                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-bordered" id="myTable1">
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-bordered" id="moviesTable">
                     <tr>                                              
-                        <th onclick="sortQuickTable(1)">Фiльм</th>
-                        <th onclick="sortQuickTable(2)">Оцiнка Дiми</th>
-                        <th onclick="sortQuickTable(3)">Оцiнка Дениса</th>
-                        <th onclick="sortQuickTable(4)">Оцiнка Юри</th>
-                        <th onclick="sortQuickTable(5)">Оцiнка Ігоря</th>
-                        <th onclick="sortQuickTable(6)">Середня оцінка</th>
-                        <th onclick="sortQuickTable(7)">Загальна оцінка</th>
-                        <th onclick="sortQuickTable(8)">Доданий</th>
+                        <th onclick="sortTable(0)">Фiльм</th>
+                        <th onclick="sortTable(1)">Оцiнка Дiми</th>
+                        <th onclick="sortTable(2)">Оцiнка Дениса</th>
+                        <th onclick="sortTable(3)">Оцiнка Юри</th>
+                        <th onclick="sortTable(4)">Оцiнка Ігоря</th>
+                        <th onclick="sortTable(5)">Середня оцінка</th>
+                        <th onclick="sortTable(6)">Загальна оцінка</th>
+                        <th>Доданий</th>
                         <!--<th onclick="sortTable(5)">Опции</th>-->
                         <th>Опції</th>
                     </tr>
                     {% for movie in movies %}
                     <tr>
                         <td>{{ movie.content }}</td>
-                        <td>{{ movie.dima_rate }}</td>
-                        <td>{{ movie.deni_rate }}</td>
-                        <td>{{ movie.yura_rate }}</td>
-                        <td>{{ movie.ihor_rate }}</td>
-                        <td>{{ (movie.dima_rate + movie.deni_rate + movie.yura_rate + movie.ihor_rate) / 4 }}</td>
+                        <td class="rate">{{ movie.dima_rate }}</td>
+                        <td class="rate">{{ movie.deni_rate }}</td>
+                        <td class="rate">{{ movie.yura_rate }}</td>
+                        <td class="rate">{{ movie.ihor_rate }}</td>
+                        <td class="average">–</td>
                         <td>{{ movie.dima_rate + movie.deni_rate + movie.yura_rate + movie.ihor_rate }}</td>
                         <td>{{ movie.date_created }}</td>
                         <td>
@@ -139,6 +139,9 @@
                     </tr>
                     {% endfor %}
                 </table>
+                <script>
+                    calculateAverages();
+                </script>
             </div>
         </div>
         <div id="menu1" class="container tab-pane fade"><br>

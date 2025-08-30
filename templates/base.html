@@ -13,7 +13,7 @@
     <script>
         function sortTable(n) {
             var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            table = document.getElementById("myTable");
+            table = document.getElementById("moviesTable");
             switching = true;
             dir = "desc"; 
             while (switching) {
@@ -172,6 +172,32 @@
                 }
             }
             }
+        }
+        function calculateAverages() {
+            const rows = document.querySelectorAll("#moviesTable tr:not(:first-child)");
+
+            rows.forEach(row => {
+            const rateCells = row.querySelectorAll(".rate");
+            const avgCell = row.querySelector(".average");
+
+            if (!avgCell) return;
+
+            const values = [];
+            rateCells.forEach(cell => {
+                const val = parseFloat(cell.textContent);
+                if (!isNaN(val) && val !== 0) {
+                values.push(val);
+                }
+            });
+
+            if (values.length === 0) {
+                avgCell.textContent = "–";
+            } else {
+                const sum = values.reduce((a, b) => a + b, 0);
+                const avg = sum / values.length;
+                avgCell.textContent = avg.toFixed(1);
+            }
+            });
         }
     </script>
     {% block head %}{% endblock %}
