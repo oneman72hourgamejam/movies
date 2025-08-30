@@ -112,7 +112,6 @@
                 <br>
                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp table-bordered" id="moviesTable">
                     <tr> 
-						<th>#</th>
                         <th>Фiльм</th>
                         <th onclick="sortTable(1)">Оцiнка Дiми</th>
                         <th onclick="sortTable(2)">Оцiнка Дениса</th>
@@ -126,7 +125,6 @@
                     </tr>
                     {% for movie in movies %}
                     <tr>
-						<td>{{ movie.id }}</td>
                         <td>{{ movie.content }}</td>
                         <td class="rate">{{ movie.dima_rate }}</td>
                         <td class="rate">{{ movie.deni_rate }}</td>
